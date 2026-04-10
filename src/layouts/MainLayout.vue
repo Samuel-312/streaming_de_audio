@@ -5,7 +5,7 @@
     <aside class="sidebar">
       <div class="sidebar-logo">
         <span>🎵</span>
-        <h2>Sonic</h2>
+        <h2>Sonic 🎵</h2>
       </div>
 
       <nav class="sidebar-nav">

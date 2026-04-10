@@ -3,35 +3,34 @@
     <div class="auth-card">
       <div class="auth-header">
         <div class="logo-icon">🎵</div>
-        <h1>Sonic</h1>
-        <p>Enter the high-fidelity ecosystem</p>
+        <h1>~Sonic~</h1>
       </div>
 
       <form @submit.prevent="handleRegister">
         <div class="form-group">
-          <label>USERNAME</label>
+          <label>Nombre</label>
           <input
             v-model="form.username"
             type="text"
-            placeholder="sonic_curator"
+            placeholder="Ingrese su nombre"
             :class="{ error: errors.username }"
           />
           <span v-if="errors.username" class="error-msg">{{ errors.username }}</span>
         </div>
 
         <div class="form-group">
-          <label>EMAIL ADDRESS</label>
+          <label>Email</label>
           <input
             v-model="form.email"
             type="email"
-            placeholder="listener@sonic.com"
+            placeholder="Ingrese su Email"
             :class="{ error: errors.email }"
           />
           <span v-if="errors.email" class="error-msg">{{ errors.email }}</span>
         </div>
 
         <div class="form-group">
-          <label>PASSWORD</label>
+          <label>Contraseña</label>
           <input
             v-model="form.password"
             type="password"
@@ -42,7 +41,7 @@
         </div>
 
         <div class="form-group">
-          <label>CONFIRM PASSWORD</label>
+          <label>Confirmar Contraseña</label>
           <input
             v-model="form.confirmPassword"
             type="password"
@@ -57,12 +56,12 @@
         </div>
 
         <button type="submit" :disabled="loading" class="btn-primary">
-          {{ loading ? 'Cargando...' : 'Create Account →' }}
+          {{ loading ? 'Cargando...' : 'Crear Cuenta' }}
         </button>
       </form>
 
       <p class="auth-link">
-        Already have an account?
+        ¿Ya tiene una cuenta?
         <RouterLink to="/login">Login</RouterLink>
       </p>
     </div>

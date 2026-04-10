@@ -5,24 +5,23 @@
       <div class="auth-header">
         <div class="logo-icon">🎵</div>
         <h1>SONIC</h1>
-        <p>Enter the rhythm</p>
       </div>
 
       <!-- Formulario -->
       <form @submit.prevent="handleLogin">
         <div class="form-group">
-          <label>EMAIL ADDRESS</label>
+          <label>Dirección De Correo Electronico</label>
           <input
             v-model="form.email"
             type="email"
-            placeholder="name@email.com"
+            placeholder="Email"
             :class="{ error: errors.email }"
           />
           <span v-if="errors.email" class="error-msg">{{ errors.email }}</span>
         </div>
 
         <div class="form-group">
-          <label>PASSWORD</label>
+          <label>Contraseña</label>
           <input
             v-model="form.password"
             type="password"
@@ -38,13 +37,13 @@
         </div>
 
         <button type="submit" :disabled="loading" class="btn-primary">
-          {{ loading ? 'Cargando...' : 'SIGN IN' }}
+          {{ loading ? 'Cargando...' : 'Entrar' }}
         </button>
       </form>
 
       <p class="auth-link">
-        Don't have an account?
-        <RouterLink to="/register">Register</RouterLink>
+        ¿Aun no tienes cuenta?
+        <RouterLink to="/register"> Registrate </RouterLink>
       </p>
     </div>
   </div>
