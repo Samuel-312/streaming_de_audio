@@ -22,7 +22,6 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Sonic API funcionando' })
 })
 
-// Debe ir siempre al final
 app.use(errorHandler)
 
 export default app

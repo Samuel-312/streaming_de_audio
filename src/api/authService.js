@@ -1,7 +1,6 @@
 import api from './axios'
 
 export const authService = {
-  // Llama a POST /api/auth/register con los datos del formulario
   register(userData) {
     return api.post('/auth/register', userData)
   },

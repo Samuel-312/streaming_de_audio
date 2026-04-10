@@ -19,7 +19,6 @@ const routes = [
     meta: { requiresGuest: true }
   },
   {
-    // Todas las rutas privadas usan el MainLayout
     path: '/',
     component: () => import('../layouts/MainLayout.vue'),
     meta: { requiresAuth: true },

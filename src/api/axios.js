@@ -1,8 +1,6 @@
 import axios from 'axios'
 
 const api = axios.create({
-  // import.meta.env.VITE_API_URL lee la variable del .env
-  // el || es un fallback por si no está definida
   baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000/api',
   headers: {
     'Content-Type': 'application/json'

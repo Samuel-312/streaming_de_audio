@@ -9,19 +9,16 @@ export const useAuthStore = defineStore('auth', () => {
   const isAuthenticated = computed(() => !!token.value)
   const isAdmin = computed(() => user.value?.role === 'admin')
 
-  // Acción de login: llama a la API y guarda la sesión
   async function login(credentials) {
     try {
       const response = await authService.login(credentials)
       setSession(response.data.user, response.data.token)
       return { success: true }
     } catch (error) {
-      // error.response.data.error es el mensaje que devuelve tu backend
       return { success: false, message: error.response?.data?.error || 'Error al iniciar sesión' }
     }
   }
 
-  // Acción de register
   async function register(userData) {
     try {
       const response = await authService.register(userData)
