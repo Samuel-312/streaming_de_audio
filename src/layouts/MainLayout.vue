@@ -18,6 +18,7 @@
         <RouterLink v-if="authStore.isAdmin" to="/admin" class="nav-item">
           ⚙️ <span>Admin</span>
         </RouterLink>
+ 
       </nav>
 
       <!-- Info del usuario y logout -->
