@@ -1,13 +1,13 @@
 <template>
   <div class="auth-container">
     <div class="auth-card">
-      <!-- Logo y título -->
+      
       <div class="auth-header">
         <div class="logo-icon">🎵</div>
         <h1>SONIC</h1>
       </div>
 
-      <!-- Formulario -->
+      
       <form @submit.prevent="handleLogin">
         <div class="form-group">
           <label>Dirección De Correo Electronico</label>
@@ -31,7 +31,7 @@
           <span v-if="errors.password" class="error-msg">{{ errors.password }}</span>
         </div>
 
-        <!-- Mensaje de error global (del servidor) -->
+        
         <div v-if="serverError" class="server-error">
           {{ serverError }}
         </div>
@@ -57,18 +57,18 @@ import { useAuthStore } from '../stores/authStore'
 const router = useRouter()
 const authStore = useAuthStore()
 
-// Estado del formulario
+
 const form = ref({
   email: '',
   password: ''
 })
 
-// Errores de validación del lado del cliente
+
 const errors = ref({})
 const serverError = ref('')
 const loading = ref(false)
 
-// Validación básica antes de enviar
+
 function validate() {
   errors.value = {}
 
@@ -80,25 +80,25 @@ function validate() {
     errors.value.password = 'La contraseña es requerida'
   }
 
-  // Retorna true si no hay errores
+  
   return Object.keys(errors.value).length === 0
 }
 
 async function handleLogin() {
-  // Si la validación falla, no enviamos
+  
   if (!validate()) return
 
   loading.value = true
   serverError.value = ''
 
-  // Llamamos a la acción del store
+  
   const result = await authStore.login(form.value)
 
   if (result.success) {
-    // Si el login fue exitoso, redirigimos al home
+    
     router.push({ name: 'Home' })
   } else {
-    // Si falló, mostramos el error del servidor
+    
     serverError.value = result.message
   }
 

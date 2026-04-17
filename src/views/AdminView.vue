@@ -11,13 +11,13 @@
       </button>
     </div>
 
-    <!-- Loading -->
+    
     <div v-if="loading" class="loading">Cargando canciones...</div>
 
-    <!-- Error -->
+    
     <div v-else-if="error" class="error-msg">{{ error }}</div>
 
-    <!-- Tabla de canciones -->
+    
     <div v-else class="songs-table">
       <div class="table-header">
         <span class="col-title">TÍTULO</span>
@@ -54,7 +54,7 @@
       </div>
     </div>
 
-    <!-- Modal crear canción -->
+    
     <div v-if="showModal" class="modal-overlay" @click.self="closeModal">
       <div class="modal">
         <h2>Nueva Canción</h2>
@@ -121,7 +121,7 @@
       </div>
     </div>
 
-    <!-- Modal confirmar eliminación -->
+    
     <div v-if="showDeleteModal" class="modal-overlay" @click.self="showDeleteModal = false">
       <div class="modal">
         <h2>Eliminar Canción</h2>
@@ -150,7 +150,7 @@ import { songService } from '../api/songService'
 const router = useRouter()
 const authStore = useAuthStore()
 
-// Si no es admin, redirigimos inmediatamente
+
 if (!authStore.isAdmin) {
   router.push({ name: 'Home' })
 }
@@ -223,7 +223,7 @@ async function handleCreate() {
   modalError.value = ''
 
   try {
-    // Limpiamos campos vacíos opcionales antes de enviar
+    
     const payload = { ...form.value }
     if (!payload.cover_url) delete payload.cover_url
     if (!payload.duration) delete payload.duration
@@ -391,7 +391,7 @@ function formatDuration(seconds) {
 
 .error-msg { color: #ef4444; }
 
-/* Modales */
+
 .modal-overlay {
   position: fixed;
   inset: 0;

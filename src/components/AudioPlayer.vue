@@ -1,8 +1,8 @@
 <template>
-  <!-- Solo se muestra si hay una canción cargada -->
+  
   <div v-if="playerStore.currentSong" class="player">
 
-    <!-- Info de la canción -->
+    
     <div class="player-info">
       <img :src="playerStore.currentSong.cover_url || 'https://picsum.photos/50'" class="player-cover"/>
 
@@ -12,22 +12,22 @@
       </div>
     </div>
 
-    <!-- Controles centrales -->
+    
     <div class="player-controls">
       <div class="player-buttons">
-        <!-- Botón anterior -->
+        
         <button @click="playerStore.playPrev()" class="ctrl-btn">⏮</button>
 
-        <!-- Botón play/pause -->
+        
         <button @click="playerStore.togglePlay()" class="ctrl-btn play-btn">
           {{ playerStore.isPlaying ? '⏸' : '▶' }}
         </button>
 
-        <!-- Botón siguiente -->
+        
         <button @click="playerStore.playNext()" class="ctrl-btn">⏭</button>
       </div>
 
-      <!-- Barra de progreso -->
+      
       <div class="player-progress">
         <span class="time">{{ playerStore.formattedCurrentTime }}</span>
         <div class="progress-bar" @click="handleSeek">
@@ -40,7 +40,7 @@
       </div>
     </div>
 
-    <!-- Control de volumen -->
+    
     <div class="player-volume">
       <span>🔊</span>
       <input
@@ -62,7 +62,7 @@ import { usePlayerStore } from '../stores/playerStore'
 
 const playerStore = usePlayerStore()
 
-// Calcula en qué porcentaje de la barra hizo clic el usuario
+
 function handleSeek(event) {
   const bar = event.currentTarget
   const clickX = event.offsetX

@@ -102,7 +102,7 @@ function validate() {
     errors.value.password = 'Mínimo 6 caracteres'
   }
 
-  // Verificamos que las contraseñas coincidan
+  
   if (form.value.password !== form.value.confirmPassword) {
     errors.value.confirmPassword = 'Las contraseñas no coinciden'
   }
@@ -116,7 +116,7 @@ async function handleRegister() {
   loading.value = true
   serverError.value = ''
 
-  // Solo mandamos los campos que necesita el backend (sin confirmPassword)
+  
   const result = await authStore.register({
     username: form.value.username,
     email: form.value.email,

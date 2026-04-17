@@ -1,29 +1,29 @@
 <template>
   <div class="home">
 
-    <!-- Header -->
+    
     <div class="home-header">
       <h1>Bienvenido, <span class="highlight">{{ authStore.user?.username }}</span></h1>
       <p>Descubre las mejores playlists</p>
     </div>
 
-    <!-- Estado de carga -->
+    
     <div v-if="loading" class="loading">
       Cargando playlists...
     </div>
 
-    <!-- Error -->
+    
     <div v-else-if="error" class="error-msg">
       {{ error }}
     </div>
 
-    <!-- Playlists -->
+    
     <div v-else>
       <div class="section-header">
         <h2>Tus Playlists</h2>
       </div>
 
-      <!-- Grid de cards -->
+      
       <div class="playlists-grid">
         <div
           v-for="playlist in playlists"
@@ -42,7 +42,7 @@
         </div>
       </div>
 
-      <!-- Mensaje si no hay playlists -->
+      
       <div v-if="playlists.length === 0" class="empty">
         No hay playlists aún.
       </div>
@@ -64,8 +64,8 @@ const playlists = ref([])
 const loading = ref(true)
 const error = ref('')
 
-// onMounted se ejecuta cuando el componente se monta en el DOM
-// Es el lugar correcto para cargar datos iniciales
+
+
 onMounted(async () => {
   try {
     const response = await playlistService.getAll()
@@ -73,7 +73,7 @@ onMounted(async () => {
   } catch (err) {
     error.value = 'Error al cargar las playlists'
   } finally {
-    // finally se ejecuta siempre, haya error o no
+    
     loading.value = false
   }
 })

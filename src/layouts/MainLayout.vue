@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
 
-    <!-- Sidebar -->
+    
     <aside class="sidebar">
       <div class="sidebar-logo">
         <span>🎵</span>
@@ -21,7 +21,7 @@
  
       </nav>
 
-      <!-- Info del usuario y logout -->
+      
       <div class="sidebar-footer">
         <div class="user-info">
           <span class="user-name">{{ authStore.user?.username }}</span>
@@ -31,13 +31,13 @@
       </div>
     </aside>
 
-    <!-- Contenido principal -->
-    <!-- pb-20 deja espacio para el reproductor fijo abajo -->
+    
+    
     <main class="main-content">
       <RouterView />
     </main>
 
-    <!-- Reproductor persistente -->
+    
     <AudioPlayer />
 
 
@@ -76,7 +76,7 @@ function handleLogout() {
   top: 0;
   left: 0;
   bottom: 80px;
-  /* Altura del reproductor */
+  
   z-index: 50;
 }
 
@@ -168,7 +168,7 @@ function handleLogout() {
   margin-left: 220px;
   padding: 32px;
   padding-bottom: 100px;
-  /* Espacio para el reproductor */
+  
   flex: 1;
 }
 </style>
