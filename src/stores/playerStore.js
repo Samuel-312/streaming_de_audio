@@ -1,0 +1,103 @@
+import { defineStore } from 'pinia'
+import { ref, computed } from 'vue'
+
+export const usePlayerStore = defineStore('player', () => {
+  const currentSong = ref(null)
+
+  const queue = ref([])
+
+  const currentIndex = ref(0)
+
+  const isPlaying = ref(false)
+  const currentTime = ref(0)
+  const duration = ref(0)
+  const volume = ref(1)
+
+  let audio = null
+
+  const progress = computed(() => {
+    if (!duration.value) return 0
+    return (currentTime.value / duration.value) * 100
+  })
+
+  const formattedCurrentTime = computed(() => formatTime(currentTime.value))
+  const formattedDuration = computed(() => formatTime(duration.value))
+
+  function formatTime(seconds) {
+    if (!seconds) return '0:00'
+    const mins = Math.floor(seconds / 60)
+    const secs = Math.floor(seconds % 60)
+    return `${mins}:${secs.toString().padStart(2, '0')}`
+  }
+
+  function playSong(song, songQueue = []) {
+    if (audio) {
+      audio.pause()
+      audio.src = ''
+    }
+
+    currentSong.value = song
+    queue.value = songQueue
+
+    currentIndex.value = songQueue.findIndex(s => s.id === song.id)
+
+    audio = new Audio(song.audio_url)
+    audio.volume = volume.value
+
+    audio.ontimeupdate = () => {
+      currentTime.value = audio.currentTime
+    }
+
+    audio.onloadedmetadata = () => {
+      duration.value = audio.duration
+    }
+
+    audio.onended = () => {
+      playNext()
+    }
+
+    audio.play()
+    isPlaying.value = true
+  }
+
+  function togglePlay() {
+    if (!audio) return
+
+    if (isPlaying.value) {
+      audio.pause()
+    } else {
+      audio.play()
+    }
+
+    isPlaying.value = !isPlaying.value
+  }
+
+  function playNext() {
+    if (currentIndex.value < queue.value.length - 1) {
+      playSong(queue.value[currentIndex.value + 1], queue.value)
+    }
+  }
+
+  function playPrev() {
+    if (currentIndex.value > 0) {
+      playSong(queue.value[currentIndex.value - 1], queue.value)
+    }
+  }
+
+  function seek(percentage) {
+    if (!audio) return
+    audio.currentTime = (percentage / 100) * duration.value
+  }
+
+  function setVolume(value) {
+    volume.value = value
+    if (audio) audio.volume = value
+  }
+
+  return {
+    currentSong, queue, isPlaying, currentTime,
+    duration, volume, progress,
+    formattedCurrentTime, formattedDuration,
+    playSong, togglePlay, playNext, playPrev, seek, setVolume
+  }
+})
