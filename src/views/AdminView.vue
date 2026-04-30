@@ -12,7 +12,7 @@
     </div>
 
     
-    <div v-if="loading" class="loading">Cargando canciones...</div>
+    <div v-if="loading" class="loading">Cargando canciones :)</div>
 
     
     <div v-else-if="error" class="error-msg">{{ error }}</div>
@@ -20,10 +20,10 @@
     
     <div v-else class="songs-table">
       <div class="table-header">
-        <span class="col-title">TÍTULO</span>
-        <span class="col-artist">ARTISTA</span>
-        <span class="col-duration">DURACIÓN</span>
-        <span class="col-actions">ACCIONES</span>
+        <span class="col-title">Titulo</span>
+        <span class="col-artist">Artista</span>
+        <span class="col-duration">Duración</span>
+        <span class="col-actions">Eliminar</span>
       </div>
 
       <div class="table-divider"></div>
