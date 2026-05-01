@@ -29,7 +29,7 @@
               @click="openAddSongsModal"
               class="btn-add-songs"
             >
-              + Agregar canciones
+               Agregar canciones
             </button>
           </div>
         </div>
@@ -37,10 +37,10 @@
 
       <div class="songs-list">
         <div class="songs-header">
-          <span class="col-num">#</span>
-          <span class="col-title">TÍTULO</span>
-          <span class="col-artist">ARTISTA</span>
-          <span class="col-duration">DURACIÓN</span>
+          <span class="col-num"></span>
+          <span class="col-title">Titulo</span>
+          <span class="col-artist">Artista</span>
+          <span class="col-duration">Duración</span>
           <span class="col-remove"></span>
         </div>
 

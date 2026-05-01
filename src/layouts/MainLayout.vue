@@ -4,18 +4,18 @@
     
     <aside class="sidebar">
       <div class="sidebar-logo">
-        <img src="../assets/logo.jpg" alt="">
+        <img src="../assets/logo.png" alt="">
       </div>
 
       <nav class="sidebar-nav">
         <RouterLink to="/home" class="nav-item">
-          - <span>Home</span>
+          <img src="../assets/home.png" alt=""> <span>Home</span>
         </RouterLink>
         <RouterLink to="/playlists" class="nav-item">
-          - <span> My Playlists</span>
+          <img src="../assets/playlist.png" alt=""> <span> My Playlists</span>
         </RouterLink>
         <RouterLink v-if="authStore.isAdmin" to="/admin" class="nav-item">
-          - <span>Admin</span>
+          <img src="../assets/admin.png" alt=""> <span>Admin</span>
         </RouterLink>
  
       </nav>
@@ -80,8 +80,8 @@ function handleLogout() {
 }
 
 .sidebar-logo img {
-  height: 100px;
-  width: 190px;
+  height: 150px;
+  width: 200px;
 }
 
 .sidebar-logo h2 {
@@ -107,6 +107,11 @@ function handleLogout() {
   text-decoration: none;
   font-size: 14px;
   transition: all 0.2s;
+}
+
+.nav-item img{
+  height: 50px;
+  width: 50px;
 }
 
 .nav-item:hover {

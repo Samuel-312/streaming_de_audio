@@ -20,7 +20,7 @@
 
         
         <button @click="playerStore.togglePlay()" class="ctrl-btn play-btn">
-          {{ playerStore.isPlaying ? '⏸' : '▶' }}
+          {{ playerStore.isPlaying ? '  ⏸' : '▶' }}
         </button>
 
         
