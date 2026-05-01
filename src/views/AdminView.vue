@@ -6,9 +6,7 @@
         <h1>Panel Admin</h1>
         <p>Gestiona las canciones del sistema</p>
       </div>
-      <button @click="openCreateModal" class="btn-create">
-        + Nueva Canción
-      </button>
+      <button @click="openCreateModal" class="btn-create"> Nueva Canción </button>
     </div>
 
     
@@ -60,7 +58,7 @@
         <h2>Nueva Canción</h2>
 
         <div class="form-group">
-          <label>TÍTULO</label>
+          <label>Titulo</label>
           <input
             v-model="form.title"
             type="text"
@@ -71,7 +69,7 @@
         </div>
 
         <div class="form-group">
-          <label>ARTISTA</label>
+          <label>Artista</label>
           <input
             v-model="form.artist"
             type="text"
@@ -82,7 +80,7 @@
         </div>
 
         <div class="form-group">
-          <label>URL DEL AUDIO</label>
+          <label>URL De La canción</label>
           <input
             v-model="form.audio_url"
             type="text"
@@ -93,7 +91,7 @@
         </div>
 
         <div class="form-group">
-          <label>URL DE LA PORTADA (opcional)</label>
+          <label>URL de la portada - opcional</label>
           <input
             v-model="form.cover_url"
             type="text"
@@ -102,11 +100,11 @@
         </div>
 
         <div class="form-group">
-          <label>DURACIÓN (segundos)</label>
+          <label>Duración en segundos</label>
           <input
             v-model.number="form.duration"
             type="number"
-            placeholder="222"
+            placeholder="180"
           />
         </div>
 

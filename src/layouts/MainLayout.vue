@@ -4,19 +4,18 @@
     
     <aside class="sidebar">
       <div class="sidebar-logo">
-        <span>🎵</span>
-        <h2>Sonic 🎵</h2>
+        <img src="../assets/logo.jpg" alt="">
       </div>
 
       <nav class="sidebar-nav">
         <RouterLink to="/home" class="nav-item">
-          🏠 <span>Home</span>
+          - <span>Home</span>
         </RouterLink>
         <RouterLink to="/playlists" class="nav-item">
-          🎵 <span> My Playlists</span>
+          - <span> My Playlists</span>
         </RouterLink>
         <RouterLink v-if="authStore.isAdmin" to="/admin" class="nav-item">
-          ⚙️ <span>Admin</span>
+          - <span>Admin</span>
         </RouterLink>
  
       </nav>
@@ -80,12 +79,9 @@ function handleLogout() {
   z-index: 50;
 }
 
-.sidebar-logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 32px;
-  padding: 0 8px;
+.sidebar-logo img {
+  height: 100px;
+  width: 190px;
 }
 
 .sidebar-logo h2 {
