@@ -41,7 +41,6 @@
           </div>
         </div>
       </div>
-
       
       <div v-if="playlists.length === 0" class="empty">
         No hay playlists aún.
@@ -56,6 +55,7 @@ import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/authStore'
 import { playlistService } from '../api/playlistService'
+import { songService } from '../api/songService'
 
 const router = useRouter()
 const authStore = useAuthStore()

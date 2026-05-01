@@ -170,7 +170,6 @@ import { useRoute } from 'vue-router'
 import { useAuthStore } from '../stores/authStore'
 import { usePlayerStore } from '../stores/playerStore'
 import { playlistService } from '../api/playlistService'
-import { songService } from '../api/songService'
 
 const route = useRoute()
 const authStore = useAuthStore()

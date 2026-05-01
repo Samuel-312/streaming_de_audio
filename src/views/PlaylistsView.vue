@@ -7,7 +7,7 @@
         <p>Gestiona tus playlists personales</p>
       </div>
       <button @click="openCreateModal" class="btn-create">
-        + Nueva Playlist
+         Nueva Playlist
       </button>
     </div>
 
