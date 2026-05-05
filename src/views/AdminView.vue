@@ -48,7 +48,7 @@
       </div>
 
       <div v-if="songs.length === 0" class="empty">
-        No hay canciones en el sistema.
+        No hay canciones aun:(
       </div>
     </div>
 
