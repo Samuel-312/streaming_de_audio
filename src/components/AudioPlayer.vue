@@ -23,10 +23,25 @@
     <div class="player-controls">
       <div class="player-buttons">
         <button @click="playerStore.playPrev()" class="ctrl-btn">⏮</button>
+
         <button @click="playerStore.togglePlay()" class="ctrl-btn play-btn">
           {{ playerStore.isPlaying ? '⏸' : '▶' }}
         </button>
+
         <button @click="playerStore.playNext()" class="ctrl-btn">⏭</button>
+
+        <!-- Botón Repetir -->
+        <button
+          @click="playerStore.toggleRepeat()"
+          class="ctrl-btn repeat-btn"
+          :class="{
+            'repeat-active': playerStore.repeatMode !== 'none',
+            'repeat-one': playerStore.repeatMode === 'one'
+          }"
+          :title="repeatTitle"
+        >
+          {{ playerStore.repeatMode === 'one' ? '🔂' : '🔁' }}
+        </button>
       </div>
 
       <div class="player-progress">
@@ -55,6 +70,7 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
 import { usePlayerStore } from '../stores/playerStore'
 
 const playerStore = usePlayerStore()
@@ -65,6 +81,12 @@ function handleSeek(event) {
   const percentage = (clickX / bar.offsetWidth) * 100
   playerStore.seek(percentage)
 }
+
+const repeatTitle = computed(() => {
+  if (playerStore.repeatMode === 'none') return 'Sin repetición'
+  if (playerStore.repeatMode === 'all') return 'Repetir cola'
+  return 'Repetir canción'
+})
 </script>
 
 <style scoped>
@@ -216,5 +238,26 @@ function handleSeek(event) {
 
 .like-btn.liked {
   color: #e040fb;
+}
+
+/* ── Repetir ── */
+.repeat-btn {
+  font-size: 16px;
+  opacity: 0.4;
+  transition: opacity 0.2s, color 0.2s;
+}
+
+.repeat-btn:hover {
+  opacity: 0.8;
+  color: #ffffff;
+}
+
+.repeat-active {
+  opacity: 1 !important;
+  color: #a855f7 !important;
+}
+
+.repeat-one {
+  color: #e040fb !important;
 }
 </style>
