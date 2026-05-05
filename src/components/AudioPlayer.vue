@@ -1,8 +1,6 @@
 <template>
-  
   <div v-if="playerStore.currentSong" class="player">
 
-    
     <div class="player-info">
       <img :src="playerStore.currentSong.cover_url || 'https://picsum.photos/50'" class="player-cover"/>
 
@@ -10,37 +8,36 @@
         <span class="player-title">{{ playerStore.currentSong.title }}</span>
         <span class="player-artist">{{ playerStore.currentSong.artist }}</span>
       </div>
+
+      <!-- Botón Me Gusta -->
+      <button
+        @click="playerStore.toggleLike()"
+        class="like-btn"
+        :class="{ liked: playerStore.isCurrentSongLiked }"
+        :title="playerStore.isCurrentSongLiked ? 'Quitar de favoritos' : 'Agregar a favoritos'"
+      >
+        {{ playerStore.isCurrentSongLiked ? '♥' : '♡' }}
+      </button>
     </div>
 
-    
     <div class="player-controls">
       <div class="player-buttons">
-        
         <button @click="playerStore.playPrev()" class="ctrl-btn">⏮</button>
-
-        
         <button @click="playerStore.togglePlay()" class="ctrl-btn play-btn">
-          {{ playerStore.isPlaying ? '  ⏸' : '▶' }}
+          {{ playerStore.isPlaying ? '⏸' : '▶' }}
         </button>
-
-        
         <button @click="playerStore.playNext()" class="ctrl-btn">⏭</button>
       </div>
 
-      
       <div class="player-progress">
         <span class="time">{{ playerStore.formattedCurrentTime }}</span>
         <div class="progress-bar" @click="handleSeek">
-          <div
-            class="progress-fill"
-            :style="{ width: playerStore.progress + '%' }"
-          ></div>
+          <div class="progress-fill" :style="{ width: playerStore.progress + '%' }"></div>
         </div>
         <span class="time">{{ playerStore.formattedDuration }}</span>
       </div>
     </div>
 
-    
     <div class="player-volume">
       <span>🔊</span>
       <input
@@ -61,7 +58,6 @@
 import { usePlayerStore } from '../stores/playerStore'
 
 const playerStore = usePlayerStore()
-
 
 function handleSeek(event) {
   const bar = event.currentTarget
@@ -199,5 +195,26 @@ function handleSeek(event) {
   width: 80px;
   accent-color: #a855f7;
   cursor: pointer;
+}
+
+/* ── Me Gusta ── */
+.like-btn {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: #888;
+  transition: color 0.2s, transform 0.15s;
+  padding: 4px;
+  line-height: 1;
+}
+
+.like-btn:hover {
+  color: #e040fb;
+  transform: scale(1.2);
+}
+
+.like-btn.liked {
+  color: #e040fb;
 }
 </style>

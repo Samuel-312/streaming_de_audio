@@ -3,11 +3,10 @@ import { ref, computed } from 'vue'
 
 export const usePlayerStore = defineStore('player', () => {
   const currentSong = ref(null)
+  const likedSongs = ref(new Set(JSON.parse(localStorage.getItem('likedSongs') || '[]')))
 
   const queue = ref([])
-
   const currentIndex = ref(0)
-
   const isPlaying = ref(false)
   const currentTime = ref(0)
   const duration = ref(0)
@@ -38,23 +37,14 @@ export const usePlayerStore = defineStore('player', () => {
 
     currentSong.value = song
     queue.value = songQueue
-
     currentIndex.value = songQueue.findIndex(s => s.id === song.id)
 
     audio = new Audio(song.audio_url)
     audio.volume = volume.value
 
-    audio.ontimeupdate = () => {
-      currentTime.value = audio.currentTime
-    }
-
-    audio.onloadedmetadata = () => {
-      duration.value = audio.duration
-    }
-
-    audio.onended = () => {
-      playNext()
-    }
+    audio.ontimeupdate = () => { currentTime.value = audio.currentTime }
+    audio.onloadedmetadata = () => { duration.value = audio.duration }
+    audio.onended = () => { playNext() }
 
     audio.play()
     isPlaying.value = true
@@ -62,13 +52,11 @@ export const usePlayerStore = defineStore('player', () => {
 
   function togglePlay() {
     if (!audio) return
-
     if (isPlaying.value) {
       audio.pause()
     } else {
       audio.play()
     }
-
     isPlaying.value = !isPlaying.value
   }
 
@@ -94,10 +82,33 @@ export const usePlayerStore = defineStore('player', () => {
     if (audio) audio.volume = value
   }
 
+  // ── ME GUSTA ──────────────────────────────────────────
+  const isCurrentSongLiked = computed(() => {
+    return currentSong.value ? likedSongs.value.has(currentSong.value.id) : false
+  })
+
+  function toggleLike(song = currentSong.value) {
+    if (!song) return
+    const updated = new Set(likedSongs.value)
+    if (updated.has(song.id)) {
+      updated.delete(song.id)
+    } else {
+      updated.add(song.id)
+    }
+    likedSongs.value = updated
+    localStorage.setItem('likedSongs', JSON.stringify([...updated]))
+  }
+
+  function isSongLiked(song) {
+    return song ? likedSongs.value.has(song.id) : false
+  }
+  // ─────────────────────────────────────────────────────
+
   return {
     currentSong, queue, isPlaying, currentTime,
-    duration, volume, progress,
-    formattedCurrentTime, formattedDuration,
-    playSong, togglePlay, playNext, playPrev, seek, setVolume
+    duration, volume, progress, likedSongs,
+    formattedCurrentTime, formattedDuration, isCurrentSongLiked,
+    playSong, togglePlay, playNext, playPrev, seek, setVolume,
+    toggleLike, isSongLiked
   }
 })
