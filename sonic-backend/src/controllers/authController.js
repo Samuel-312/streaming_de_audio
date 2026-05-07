@@ -3,7 +3,6 @@ import jwt from 'jsonwebtoken'
 import { supabase } from '../config/supabase.js'
 import { registerSchema, loginSchema } from '../schemas/authSchema.js'
 
-// REGISTRO
 export const register = async (req, res) => {
   try {
     const validation = registerSchema.safeParse(req.body)
