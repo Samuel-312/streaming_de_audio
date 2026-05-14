@@ -13,13 +13,13 @@ export const createSongSchema = z.object({
 
   duration: z
     .number()
-    .int()          // Debe ser entero
-    .positive()     // Debe ser positivo
-    .optional(),    // No obligatorio por ahora
+    .int()        
+    .positive()    
+    .optional(),    
 
   audio_url: z
     .string()
-    .url('Debe ser una URL válida'), // Debe ser una URL válida
+    .url('Debe ser una URL válida'),
 
   cover_url: z
     .string()

@@ -11,16 +11,13 @@ import { verifyToken } from '../middlewares/authMiddleware.js'
 
 const router = Router()
 
-// Rutas públicas
 router.get('/', getPlaylists)
 router.get('/:id', getPlaylistById)
 
-// Rutas protegidas
 router.post('/', verifyToken, createPlaylist)
 router.put('/:id', verifyToken, updatePlaylist)
 router.delete('/:id', verifyToken, deletePlaylist)
 
-// Canciones dentro de playlist
 router.post('/:playlistId/songs/:songId', verifyToken, addSongToPlaylist)
 router.delete('/:playlistId/songs/:songId', verifyToken, removeSongFromPlaylist)
 

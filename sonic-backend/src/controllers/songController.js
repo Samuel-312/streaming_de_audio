@@ -1,7 +1,6 @@
 import { supabase } from '../config/supabase.js'
 import { createSongSchema } from '../schemas/songSchema.js'
 
-// OBTENER TODAS LAS CANCIONES
 export const getSongs = async (req, res) => {
   try {
     const { data, error } = await supabase
@@ -18,7 +17,6 @@ export const getSongs = async (req, res) => {
   }
 }
 
-// OBTENER UNA CANCIÓN POR ID
 export const getSongById = async (req, res) => {
   try {
     const { id } = req.params
@@ -40,7 +38,6 @@ export const getSongById = async (req, res) => {
   }
 }
 
-// CREAR CANCIÓN (solo admin)
 export const createSong = async (req, res) => {
   try {
     const validation = createSongSchema.safeParse(req.body)
@@ -66,7 +63,6 @@ export const createSong = async (req, res) => {
   }
 }
 
-// ELIMINAR CANCIÓN (solo admin)
 export const deleteSong = async (req, res) => {
   try {
     const { id } = req.params
@@ -95,14 +91,11 @@ export const deleteSong = async (req, res) => {
   }
 }
 
-// AGREGAR CANCIÓN A UNA PLAYLIST
 export const addSongToPlaylist = async (req, res) => {
   try {
-    // Ambos IDs vienen en la URL
-    // ejemplo: POST /api/playlists/123/songs/456
+
     const { playlistId, songId } = req.params
 
-    // Verificamos que la playlist sea del usuario
     const { data: playlist } = await supabase
       .from('playlists')
       .select('owner_id')
@@ -117,7 +110,6 @@ export const addSongToPlaylist = async (req, res) => {
       return res.status(403).json({ error: 'No tienes permisos' })
     }
 
-    // Verificamos que la canción exista
     const { data: song } = await supabase
       .from('songs')
       .select('id')
@@ -128,8 +120,7 @@ export const addSongToPlaylist = async (req, res) => {
       return res.status(404).json({ error: 'Canción no encontrada' })
     }
 
-    // Calculamos la posición: contamos cuántas canciones tiene la playlist
-    // y le sumamos 1 para que la nueva quede al final
+
     const { count } = await supabase
       .from('playlist_songs')
       .select('*', { count: 'exact', head: true })
@@ -154,7 +145,6 @@ export const addSongToPlaylist = async (req, res) => {
   }
 }
 
-// ELIMINAR CANCIÓN DE UNA PLAYLIST
 export const removeSongFromPlaylist = async (req, res) => {
   try {
     const { playlistId, songId } = req.params

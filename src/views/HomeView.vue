@@ -6,7 +6,6 @@
       <p>Descubre las mejores playlists</p>
     </div>
 
-    <!-- BÚSQUEDA DE CANCIONES -->
     <div class="search-section">
       <div class="search-box" :class="{ focused: searchFocused }">
         <span class="search-icon"></span>
@@ -108,7 +107,6 @@ const playlists = ref([])
 const loading = ref(true)
 const error = ref('')
 
-// Búsqueda
 const searchQuery = ref('')
 const allSongs = ref([])
 const filteredSongs = ref([])
@@ -192,7 +190,6 @@ function goToPlaylist(id) {
   font-size: 15px;
 }
 
-/* Búsqueda */
 .search-section {
   margin-bottom: 40px;
 }
@@ -341,7 +338,6 @@ function goToPlaylist(id) {
   padding-left: 4px;
 }
 
-/* Sección playlists */
 .section-header {
   margin-bottom: 20px;
 }

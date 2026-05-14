@@ -248,7 +248,6 @@ async function handleAddSong(song) {
 
   try {
     await playlistService.addSong(playlist.value.id, song.id)
-    // Recargamos la playlist para que aparezca la canción nueva
     await loadPlaylist()
   } catch (err) {
     console.error('Error al agregar canción:', err)

@@ -9,12 +9,12 @@ export const createPlaylistSchema = z.object({
   description: z
     .string()
     .max(500, 'Máximo 500 caracteres')
-    .optional(), // Este campo no es obligatorio
+    .optional(), 
 
   is_public: z
     .boolean()
     .optional()
-    .default(true) // Si no lo mandan, por defecto es pública
+    .default(true) 
 })
 
 export const updatePlaylistSchema = z.object({
@@ -22,7 +22,7 @@ export const updatePlaylistSchema = z.object({
     .string()
     .min(1)
     .max(100)
-    .optional(), // En el update todos los campos son opcionales
+    .optional(),
 
   description: z
     .string()

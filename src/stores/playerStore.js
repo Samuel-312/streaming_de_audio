@@ -12,7 +12,6 @@ export const usePlayerStore = defineStore('player', () => {
   const duration = ref(0)
   const volume = ref(1)
 
-  // 'none' = sin repetir | 'one' = repetir una canción | 'all' = repetir cola
   const repeatMode = ref('none')
 
   let audio = null
@@ -61,7 +60,6 @@ export const usePlayerStore = defineStore('player', () => {
           playSong(queue.value[0], queue.value)
         }
       } else {
-        // Sin repetición
         playNext()
       }
     }
@@ -104,7 +102,6 @@ export const usePlayerStore = defineStore('player', () => {
     if (audio) audio.volume = value
   }
 
-  // ── REPETICIÓN ────────────────────────────────────────
   function toggleRepeat() {
     if (repeatMode.value === 'none') {
       repeatMode.value = 'all'
@@ -114,9 +111,7 @@ export const usePlayerStore = defineStore('player', () => {
       repeatMode.value = 'none'
     }
   }
-  // ─────────────────────────────────────────────────────
 
-  // ── ME GUSTA ──────────────────────────────────────────
   const isCurrentSongLiked = computed(() => {
     return currentSong.value ? likedSongs.value.has(currentSong.value.id) : false
   })
@@ -136,7 +131,6 @@ export const usePlayerStore = defineStore('player', () => {
   function isSongLiked(song) {
     return song ? likedSongs.value.has(song.id) : false
   }
-  // ─────────────────────────────────────────────────────
 
   return {
     currentSong, queue, isPlaying, currentTime,

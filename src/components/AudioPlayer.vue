@@ -9,7 +9,6 @@
         <span class="player-artist">{{ playerStore.currentSong.artist }}</span>
       </div>
 
-      <!-- Botón Me Gusta -->
       <button
         @click="playerStore.toggleLike()"
         class="like-btn"
@@ -30,7 +29,6 @@
 
         <button @click="playerStore.playNext()" class="ctrl-btn">⏭</button>
 
-        <!-- Botón Repetir -->
         <button
           @click="playerStore.toggleRepeat()"
           class="ctrl-btn repeat-btn"
@@ -219,7 +217,6 @@ const repeatTitle = computed(() => {
   cursor: pointer;
 }
 
-/* ── Me Gusta ── */
 .like-btn {
   background: none;
   border: none;
@@ -240,7 +237,6 @@ const repeatTitle = computed(() => {
   color: #e040fb;
 }
 
-/* ── Repetir ── */
 .repeat-btn {
   font-size: 16px;
   opacity: 0.4;
